@@ -22,7 +22,7 @@ public class TrollProp {
   @DisplayName("A troll hunting score can never be negative")
   @Property
   public void invariance(Troll troll) {
-    assertThat(troll.score()).isGreaterThan(0);
+    assertThat(troll.score()).isGreaterThanOrEqualTo(0);
   }
 
   /**
@@ -48,7 +48,7 @@ public class TrollProp {
    */
   @DisplayName("Killing N elves one by one is the same as killing N elves in a single strike")
   @Property
-  public void analogy(Troll troll, Elf elf, @InRange(minInt = 0) int nbElves) {
+  public void analogy(Troll troll, Elf elf, @InRange(minInt = 0, maxInt = 100) int nbElves) {
     List<Elf> oneByOne = List.fill(nbElves, elf);
     Troll trollKillingOneByOne = oneByOne.foldLeft(troll, Troll::iGotOne);
     Troll trollKillingInSingleStrike = troll.iGot(nbElves, elf);

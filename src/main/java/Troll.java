@@ -1,4 +1,5 @@
 import io.vavr.collection.Map;
+import io.vavr.control.Option;
 import java.util.function.Function;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,33 +13,38 @@ public class Troll {
   private String name;
   private Map<Elf, Integer> killList;
 
-  //TODO
   public int score() {
-    return 0;
+    int start = 0;
+    return killList.foldLeft(start,
+        (previousScore, elfAndNbKilled) -> previousScore + (elfAndNbKilled._1.value() * elfAndNbKilled._2));
   }
 
-  //TODO
   public Troll iGotOne(Elf elf) {
-    return null;
+    return modifyScore(nbKilled -> nbKilled + 1, elf);
   }
 
-  //TODO
   public Troll iGot(int nbElves, Elf elf) {
-    return null;
+    return modifyScore(nbKilled -> nbKilled + nbElves, elf);
   }
 
-  //TODO
   public Troll oopsHeSurvived(Elf elf) {
-    return null;
+    return modifyScore(nbKilled -> nbKilled - 1, elf);
   }
 
-  //TODO
   public Troll allElvesOfAKindResurrected(Elf elf) {
-    return null;
+    Map<Elf, Integer> killListWithoutResurrectedElves = killList.remove(elf);
+    return withKillList(killListWithoutResurrectedElves);
   }
 
-  //TODO
   private Troll modifyScore(Function<Integer, Integer> modifier, Elf elf) {
-    return null;
+    Option<Integer> currentNbKilled = killList.get(elf);
+    int nextNbKilled = modifier.apply(currentNbKilled.getOrElse(0));
+    Map<Elf, Integer> newKillList;
+    if (nextNbKilled <= 0) {
+      newKillList = killList.remove(elf);
+    } else {
+      newKillList = killList.put(elf, nextNbKilled);
+    }
+    return withKillList(newKillList);
   }
 }

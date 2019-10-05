@@ -36,7 +36,7 @@ dependencies {
     val assertjVersion = "3.11.1"
     val assertjVavrVersion = "0.1.0"
     // Property based testing (PBT)
-    val junitQuickcheckVersion = "0.8.1"
+    val junitQuickcheckVersion = "0.9"
     val junitQuickcheckVavrVersion = "1.0"
     // Automatically add classes to service loader (useful for JUnit-QuickCheck generators)
     val autoServiceVersion = "1.0-rc4"
