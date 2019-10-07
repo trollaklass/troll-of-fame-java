@@ -1,2 +1,2 @@
-rootProject.name = "property-based-test-workshop-java"
+rootProject.name = "troll-of-fame-java"
 

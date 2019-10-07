@@ -41,9 +41,9 @@ At the end of each battle, the trolls want to compare the number and attributes 
 
 You inherit an application that seems to work fine. Run `./gradlew build` (•̀ᴗ•́)و
 
-Read [TrollTest](./src/test/java/TrollTest.java) as a first specification of the software.
+Read [TrollTest](./src/test/java/TrollTest.java) and [ElfTest](./src/test/java/ElfTest.java) as a first specification of the software.
 
-Now uncomment the content of [ElfProp](./src/test/java/TrollProp.java) and run tests again... Oops, seems like our unit tests were not so complete. (╥﹏╥) This is a limitation of unit tests: you don't test many values, and they are never truly random.
+Now uncomment the content of [ElfProp](./src/test/java/ElfProp.java) and run tests again... Oops, seems like our unit tests were not so complete. (╥﹏╥) This is a limitation of unit tests: you don't test many values, and they are never truly random.
 
 Now fix the implementation bug (replace `+` with `*` in the Elf value calculation) and check all tests now pass.
 
