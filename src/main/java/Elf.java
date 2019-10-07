@@ -38,7 +38,7 @@ public class Elf {
 
   private int valuePerRole() {
     return Match(role).of(
-        Case($(ARCHER), 3),
+        Case($(ARCHER), 2),
         Case($(SWORDSMAN), 1),
         Case($(PRIEST), 5),
         Case($(WARLOCK), 4)

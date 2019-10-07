@@ -90,7 +90,7 @@ public class TrollProp {
    *
    * This is useful whenever you need to ensure an output can only be reached by a single input; e.g. a hash function, or a function that takes a person and returns its Social Security Number (imagine if 2 persons had the same SSN!)
    */
-  @DisplayName("When killing different elves, a troll should get different scores")
+  @DisplayName("When killing different elves, a troll should become different")
   @Property
   public void injective(Troll troll, Elf elf1, Elf elf2) {
     assumeThat(elf1).isNotEqualTo(elf2);
@@ -98,6 +98,6 @@ public class TrollProp {
     Troll trollKilledElf1 = troll.iGotOne(elf1);
     Troll trollKilledElf2 = troll.iGotOne(elf2);
 
-    assertThat(trollKilledElf1.score()).isNotEqualTo(trollKilledElf2.score());
+    assertThat(trollKilledElf1).isNotEqualTo(trollKilledElf2);
   }
 }
