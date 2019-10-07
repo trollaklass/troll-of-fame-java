@@ -16,7 +16,7 @@ public class Troll {
   public int score() {
     int start = 0;
     return killList.foldLeft(start,
-        (previousScore, elfAndNbKilled) -> previousScore + (elfAndNbKilled._1.value() * elfAndNbKilled._2));
+        (previousScore, elfAndNbKilled) -> (elfAndNbKilled._1.value() * elfAndNbKilled._2));
   }
 
   public Troll iGotOne(Elf elf) {
@@ -39,12 +39,7 @@ public class Troll {
   private Troll modifyScore(Function<Integer, Integer> modifier, Elf elf) {
     Option<Integer> currentNbKilled = killList.get(elf);
     int nextNbKilled = modifier.apply(currentNbKilled.getOrElse(0));
-    Map<Elf, Integer> newKillList;
-    if (nextNbKilled <= 0) {
-      newKillList = killList.remove(elf);
-    } else {
-      newKillList = killList.put(elf, nextNbKilled);
-    }
+    Map<Elf, Integer> newKillList = killList.put(elf, nextNbKilled);
     return withKillList(newKillList);
   }
 }
