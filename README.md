@@ -120,23 +120,23 @@ This ensures that `iGotOne` and `iGot` are consistent.
 
 **Idempotent properties** check that running a function once or several times leads to exactly the same result, i.e. an idempotent function brings to a stable state from which this function becomes useless.
 
+![idempotence](./idempotence1.png)
+
 - For any `troll` and any `elf`, once all `elf`s have been resurrected, what should happen if these `elf`s are resurrected again?
 - Write an **idempotent property** test to check that
 
 This ensures that `allElvesOfAKindResurrected` brings the troll killing list to a stable state.
 
+![idempotence](./idempotence2.png)
+
 #### [Bonus] Step 5 - Metamorphism
 
 **Metamorphic properties** check that running a function with variants of the same input should lead to equal or consistent outputs. E.g. if the input is multiplied by 2, is the output also multiplied by 2? Divided by 2? The same?
-
-![idempotence](./idempotence1.png)
 
 - For any `troll` and any `elf`, what should the `troll` score be compared to the score of the `troll` after killing `elf`?
 - Write a **metamorphic property** test to check that
 
 This ensures that `iGotOne` correctly increases the kill list (and thus the score) when an elf is killed.
-
-![idempotence](./idempotence2.png)
 
 #### [Bonus] Step 6 - Injection
 
