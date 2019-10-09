@@ -23,7 +23,7 @@ public class Elf {
   private Role role;
 
   public int value() {
-    return multiplierPerRace() + valuePerRole();
+    return multiplierPerRace() * valuePerRole();
   }
 
   /**

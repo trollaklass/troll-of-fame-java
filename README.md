@@ -62,6 +62,8 @@ In Java, we use [JUnit-QuickCheck](https://pholser.github.io/junit-quickcheck/si
 
 ![invariant](./invariant.png)
 
+*No matter the year, the 31st of December is a New Year's Eve*
+
 - For a simpler start, we already configured the build dependencies and created generators for `Elf` and `Troll` in the `test` module
 - Create a Property Based Test file `TrollProp.java`:
 
@@ -96,6 +98,8 @@ Another invariance property would be that all High elves' value must be an even 
 
 ![inverse](./inverse.png)
 
+*`bar` and `foo` are inverse of each other*
+
 - For any `troll` and any `elf`, if the troll kills the `elf` and then realizes the elf survived, what should be the result?
 - Write an **inverse property** test to check that
 
@@ -107,20 +111,27 @@ Testing it will ensure that `iGotOne` and `oopsHeSurvived` are consistent.
 
 ![analogy](./analogy1.png)
 
+*Adding any number to itself is the same as multiplying this number by 2*
+
 - For any `troll`, any `elf` and any positive `quantity` of killed elves, what should be the difference between:
+  - In JUnit-QuickCheck, you can annotate the `quantity` parameter with `@InRange(minInt = 1, maxInt = 100)` to constrain it
   - killing a single `elf` and repeating this operation `quantity` times
   - killing in a single strike `quantity` units of `elf`?
 - Write an **analogous property** test to check that
 
 This ensures that `iGotOne` and `iGot` are consistent.
 
-![analogy](./analogy1.png)
+![analogy](./analogy2.png)
+
+*For refactors, copy the function to refactor, do your changes, then write an Analogy property test to check for any input that they return the same output, i.e. the refactor has no regression! Now you can delete the test and the legacy function, and rename the refactored function to the legacy name*
 
 #### Step 4 - Idempotence
 
-**Idempotent properties** check that running a function once or several times leads to exactly the same result, i.e. an idempotent function brings to a stable state from which this function becomes useless.
+**Idempotent properties** check that running a function once or several times leads to exactly the same result, i.e. an idempotent function brings to a stable state from which this function becomes useless. This is a useful properties of functions that clean data (e.g. trim whitespaces, replace dots with hyphens in a phone number, etc.).
 
 ![idempotence](./idempotence1.png)
+
+*Once a list of numbers is sorted, sorting it again doesn't change anything*
 
 - For any `troll` and any `elf`, once all `elf`s have been resurrected, what should happen if these `elf`s are resurrected again?
 - Write an **idempotent property** test to check that
@@ -128,6 +139,8 @@ This ensures that `iGotOne` and `iGot` are consistent.
 This ensures that `allElvesOfAKindResurrected` brings the troll killing list to a stable state.
 
 ![idempotence](./idempotence2.png)
+
+*More generally, `function` is idempotent if applying it to its own result doesn't change anything*
 
 #### [Bonus] Step 5 - Metamorphism
 
@@ -140,7 +153,7 @@ This ensures that `iGotOne` correctly increases the kill list (and thus the scor
 
 #### [Bonus] Step 6 - Injection
 
-**Injective properties** check that different inputs lead to different outputs, i.e. there aren't 2 different inputs that lead to the same output, i.e. each output has at most 1 input.
+**Injective properties** check that different inputs lead to different outputs, i.e. there aren't 2 different inputs that lead to the same output, i.e. each output has at most 1 input. This is a useful property whenever you need to ensure an output can only be reached by a single input; e.g. a hash function, or a function that takes a person and returns its Social Security Number (imagine if 2 persons had the same SSN!)
 
 - For any `troll` and any 2 elves `elf1` and `elf2`, assuming `elf1` is different from `elf2`, `troll` after killing `elf1` must be different from `troll` after killing `elf2`
 - Write an **injective property** test to check that
