@@ -36,10 +36,10 @@ class TrollTest {
   @Test
   void allElvesOfAKindResurrected() {
     Elf darkSwordsman = new Elf(DARK, SWORDSMAN);
-    Elf highPriest = new Elf(HIGH, ARCHER);
+    Elf highArcher = new Elf(HIGH, ARCHER);
     Map<Elf, Integer> killList = HashMap.ofEntries(
         Tuple(darkSwordsman, 3),
-        Tuple(highPriest, 42));
+        Tuple(highArcher, 42));
     Troll aklassBefore = new Troll("Aklass", killList);
 
     Troll aklassAfter = aklassBefore.allElvesOfAKindResurrected(darkSwordsman);
