@@ -10,10 +10,11 @@ import org.junit.jupiter.api.Test;
 class ElfTest {
 
   @Test
-  void darkWarlock() {
+  void darkWarlocksAreEqual() {
     Elf doomShadow = new Elf(HIGH, WARLOCK);
+    Elf thundershade = new Elf(HIGH, WARLOCK);
 
-    assertThat(doomShadow.value()).isEqualTo(8);
+    assertThat(doomShadow.value()).isEqualTo(thundershade.value());
   }
 
   @Test

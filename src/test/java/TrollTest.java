@@ -1,7 +1,6 @@
 import static elf.Race.DARK;
 import static elf.Race.HIGH;
 import static elf.Role.ARCHER;
-import static elf.Role.PRIEST;
 import static elf.Role.SWORDSMAN;
 import static elf.Role.WARLOCK;
 import static io.vavr.API.Map;
@@ -25,36 +24,6 @@ class TrollTest {
   }
 
   @Test
-  void iGotOneHighPriest() {
-    Troll aklassBefore = new Troll("Aklass", Map());
-    Elf highPriest = new Elf(HIGH, PRIEST);
-
-    Troll aklassAfter = aklassBefore.iGotOne(highPriest);
-
-    assertThat(aklassAfter.score()).isEqualTo(10);
-  }
-
-  @Test
-  void iGotOneDarkSwordsman() {
-    Troll aklassBefore = new Troll("Aklass", Map());
-    Elf darkSwordsman = new Elf(DARK, SWORDSMAN);
-
-    Troll aklassAfter = aklassBefore.iGotOne(darkSwordsman);
-
-    assertThat(aklassAfter.score()).isEqualTo(1);
-  }
-
-  @Test
-  void iGotOneDarkWarlock() {
-    Troll aklassBefore = new Troll("Aklass", Map());
-    Elf darkWarlock = new Elf(DARK, WARLOCK);
-
-    Troll aklassAfter = aklassBefore.iGotOne(darkWarlock);
-
-    assertThat(aklassAfter.score()).isEqualTo(4);
-  }
-
-  @Test
   void oopsHeSurvivedDarkWarlock() {
     Elf darkWarlock = new Elf(DARK, WARLOCK);
     Troll aklassBefore = new Troll("Aklass", Map(darkWarlock, 3));
@@ -67,7 +36,7 @@ class TrollTest {
   @Test
   void allElvesOfAKindResurrected() {
     Elf darkSwordsman = new Elf(DARK, SWORDSMAN);
-    Elf highPriest = new Elf(HIGH, PRIEST);
+    Elf highPriest = new Elf(HIGH, ARCHER);
     Map<Elf, Integer> killList = HashMap.ofEntries(
         Tuple(darkSwordsman, 3),
         Tuple(highPriest, 42));
@@ -75,6 +44,6 @@ class TrollTest {
 
     Troll aklassAfter = aklassBefore.allElvesOfAKindResurrected(darkSwordsman);
 
-    assertThat(aklassAfter.score()).isEqualTo(420);
+    assertThat(aklassAfter.score()).isEqualTo(168);
   }
 }
